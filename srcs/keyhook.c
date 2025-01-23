@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:47:51 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/23 00:58:25 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/23 02:11:27 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	move_player(t_game *vars, int keycode)
 
 void	check_place(t_game *vars, int x, int y, int keycode)
 {
-    int old_x = vars->player.x;
-    int old_y = vars->player.y;
 	if (vars->map.map[y][x] != '1')
 		move_player(vars, keycode);
     if (vars->map.map[vars->player.y][vars->player.x] == 'C')
@@ -85,8 +83,6 @@ void	moves(int keycode, t_game *vars)
 	{
 		check_place(vars, vars->player.x + 1, vars->player.y, keycode);
 	}
-    printf("Moves: %d\n", vars->player.moves);
-    printf("Collectibles: %d\n", vars->map.collectibles);
 }
 
 int	key_hook(int keycode, t_game *vars)

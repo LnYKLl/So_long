@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:50:42 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/23 01:05:46 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/23 02:25:11 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 int game_loop(char **argv)
 {
-    int i;
-    int j;
-
-    i = 15;
-    j = 15;
     t_game	*vars = malloc(sizeof(t_game));
     if (!vars)
         return (1);
-    
-    if(check_map(vars, argv) == 0)
+    if(check_map(vars, argv) == 0) 
     {
         printf("Error in the map.\n");
         free(vars);

@@ -1,33 +1,39 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/21 02:10:11 by lkiloul           #+#    #+#              #
-#    Updated: 2025/01/21 02:27:26 by lkiloul          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-MLX = -lmlx -lXext -lX11
-SRC = keyhook.c get_next_line.c get_next_line_utils.c ft_close.c map.c sprites.c game_init.c
-OBJ = $(SRC:.c=.o)
-INCLUDES = -I /usr/include -I /usr/local/include
+
+SRC_DIR = srcs
+OBJ_DIR = obj
+INC_DIR = includes
+
+SRC_FILES = game_init.c \
+            get_next_line.c \
+            get_next_line_utils.c \
+            keyhook.c \
+            map.c \
+            sprites.c \
+            so_long.c \
+            ft_close.c
+
+OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
+
+INCLUDES = -I$(INC_DIR) -Imlx
+
+LIBS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+
+NAME = so_long
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(INCLUDES) -L /usr/local/lib -lmlx
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
