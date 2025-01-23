@@ -6,13 +6,13 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:50:11 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/21 02:24:34 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/22 22:36:04 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
