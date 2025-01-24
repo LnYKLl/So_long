@@ -6,12 +6,12 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/23 00:54:45 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/24 10:23:44 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+#include "libft.h"
 int	is_valid_line(char *line)
 {
 	int	i;

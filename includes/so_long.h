@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/23 00:55:08 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/24 10:14:07 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ typedef struct s_game
 	int			height;
 	int			moves;
 }				t_game;
-int				ft_strlen(char *s);
-char			*ft_strchr(const char *s, int c);
-char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strdup(const char *s);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*get_next_line(int fd);
 
 int				close_window(t_game *vars);
 int				key_hook(int keycode, t_game *vars);
