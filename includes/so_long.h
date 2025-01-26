@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/24 10:14:07 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/26 00:13:27 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,8 @@ void			draw_exit(t_game *vars, int x, int y);
 void			init_sprites(t_game *vars);
 void			draw_player(t_game *vars, int x, int y);
 int				check_map(t_game *vars, char **argv);
+int				render_map(t_game *vars, char **argv);
+int				map_parsing(t_game *vars, char **argv);
+void	draw_line(t_game *vars, char *line, int j);
+
 #endif

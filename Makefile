@@ -6,7 +6,7 @@
 #    By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:03:58 by lkiloul           #+#    #+#              #
-#    Updated: 2025/01/24 10:34:36 by lkiloul          ###   ########.fr        #
+#    Updated: 2025/01/26 00:11:29 by lkiloul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC_FILES = game_init.c \
             keyhook.c \
-            map.c \
+            map_check.c \
+			map_render.c \
             sprites.c \
             so_long.c \
-            ft_close.c
+            close.c \
+			draw.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))

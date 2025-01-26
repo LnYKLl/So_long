@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/24 10:23:44 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/26 00:26:53 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "libft.h"
+#include "so_long.h"
+
 int	is_valid_line(char *line)
 {
 	int	i;
@@ -27,19 +28,26 @@ int	is_valid_line(char *line)
 	return (1);
 }
 
-int	check_map(t_game *vars, char **argv)
+int	check_file(char **argv)
+{
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
+	{
+		ft_printf("Error\nThe map file must have the .ber extension.\n");
+		return (0);
+	}
+	return (1);
+}
+
+int	map_parsing(t_game *vars, char **argv)
 {
 	char	*line;
 	int		fd;
-	int		i;
 
-	i = 0;
-	vars->map.width = 0;
-	vars->map.height = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (0);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (!is_valid_line(line))
 		{
@@ -51,14 +59,31 @@ int	check_map(t_game *vars, char **argv)
 			vars->map.width = ft_strlen(line) - 1;
 		vars->map.height++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
+	return (1);
+}
+
+int	check_map(t_game *vars, char **argv)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	vars->map.width = 0;
+	vars->map.height = 0;
+	if (check_file(argv) == 0)
+		return (0);
+	if (!map_parsing(vars, argv))
+		return (0);
 	vars->map.map = malloc(sizeof(char *) * vars->map.height);
 	if (!vars->map.map)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (0);
+	i = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		vars->map.map[i] = ft_strdup(line);
@@ -67,51 +92,4 @@ int	check_map(t_game *vars, char **argv)
 	}
 	close(fd);
 	return (1);
-}
-
-void	draw_line(t_game *vars, char *line, int j)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '1')
-			draw_wall(vars, i, j);
-		else if (line[i] == 'P')
-		{
-			draw_player(vars, i, j);
-			vars->player.x = i;
-			vars->player.y = j;
-		}
-		else if (line[i] == '0')
-			draw_background(vars, i, j);
-		else if (line[i] == 'C')
-			draw_coins(vars, i , j);
-		else if (line[i] == 'E')
-		{
-			draw_background(vars, i, j);
-			vars->map.exit_x = i;
-			vars->map.exit_y = j;
-		}
-		i++;
-	}
-}
-
-void	draw_map(t_game *vars, char **argv)
-{
-	char *line;
-	int fd;
-	int j = 0;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return ;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		draw_line(vars, line, j);
-		j++;
-		free(line);
-	}
-	close(fd);
 }

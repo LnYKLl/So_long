@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_close.c                                         :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:46:08 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/23 01:59:42 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/26 00:18:41 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void free_resources(t_game *vars)
     if (vars->map.map)
     {
         for (int i = 0; i < vars->map.height; i++)
-        {
             free(vars->map.map[i]);
-        }
         free(vars->map.map);
     }
     if (vars->background.xpm)
@@ -48,3 +46,4 @@ int close_window(t_game *vars)
     exit(0);
     return (0);
 }
+
