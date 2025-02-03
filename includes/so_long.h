@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/26 00:13:27 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/01/28 10:47:06 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			collectibles;
+	int			exit;
 	char		**map;
 	int			exit_x;
 	int			exit_y;
@@ -66,6 +67,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_map		map;
+	t_map		map_copy;
 	t_image		background;
 	t_image		wall;
 	t_image		coins;
