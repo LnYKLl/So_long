@@ -6,12 +6,13 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/03 09:17:21 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/03 11:20:59 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "so_long.h"
+#include <stdio.h>
 
 int	is_char_valid(char *line)
 {
@@ -20,15 +21,23 @@ int	is_char_valid(char *line)
 
 	i = 0;
 	p = 0;
+	if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
+	{
+		ft_printf("Error : The map is not surrounded by walls.\n");
+		return (0);
+	}
 	while (line[i])
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] != 'E'
 			&& line[i] != 'C' && line[i] != '\n')
+		{
+			ft_printf("Error :Invalid character in the map.\n");
 			return (0);
+		}
 		if (line[i] == 'P' && p == 0)
 			p++;
 		else if (line[i] == 'P' && p == 1)
-			perror("Error\nThere is more than one player in the map file.\n");
+			perror("Error : There is more than one player in the map file.\n");
 		i++;
 	}
 	return (1);
@@ -38,7 +47,7 @@ int	check_file(char **argv)
 {
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
 	{
-		perror("Error\nThe file is not a .ber file.\n");
+		perror("Error : The file is not a .ber file.\n");
 		return (0);
 	}
 	return (1);
@@ -62,7 +71,6 @@ int	map_parsing(t_game *vars, char **argv)
 		{
 			free(line);
 			close(fd);
-			ft_printf("Error\nInvalid character in the map.\n");
 			return (-1);
 		}
 		if (vars->map.width == 0)

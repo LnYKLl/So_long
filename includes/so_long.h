@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/28 10:47:06 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/03 11:21:55 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ typedef struct s_image
 	int			y;
 }				t_image;
 
+typedef struct s_sprite
+{
+	t_image		background;
+	t_image		wall;
+	t_image		coins;
+	t_image		exit;
+	t_image		player;
+}				t_sprite;
+
 typedef struct s_player
 {
 	int			x;
@@ -59,7 +68,6 @@ typedef struct s_player
 	int			old_x;
 	int			old_y;
 	int			moves;
-	t_image		img;
 }				t_player;
 
 typedef struct s_game
@@ -68,11 +76,8 @@ typedef struct s_game
 	void		*win;
 	t_map		map;
 	t_map		map_copy;
-	t_image		background;
-	t_image		wall;
-	t_image		coins;
-	t_image		exit;
 	t_player	player;
+	t_sprite	sprite;
 	int			width;
 	int			height;
 	int			moves;
@@ -91,6 +96,6 @@ void			draw_player(t_game *vars, int x, int y);
 int				check_map(t_game *vars, char **argv);
 int				render_map(t_game *vars, char **argv);
 int				map_parsing(t_game *vars, char **argv);
-void	draw_line(t_game *vars, char *line, int j);
+void			draw_line(t_game *vars, char *line, int j);
 
 #endif
