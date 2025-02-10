@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/03 11:20:59 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/05 21:48:01 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,6 @@ int	map_parsing(t_game *vars, char **argv)
 
 int	check_map(t_game *vars, char **argv)
 {
-	int		fd;
-	char	*line;
-	int		i;
-
 	vars->map.width = 0;
 	vars->map.height = 0;
 	if (check_file(argv) == 0)
@@ -105,16 +101,14 @@ int	check_map(t_game *vars, char **argv)
 	vars->map.map = malloc(sizeof(char *) * vars->map.height);
 	if (!vars->map.map)
 		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if (!map_read(vars, argv))
 		return (0);
-	i = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	if (!map_copy(vars))
+		return (0);
+	if (path_checker(vars) != 1 )
 	{
-		vars->map.map[i] = ft_strdup(line);
-		free(line);
-		i++;
+		ft_printf("Error : the map does not have a valid path.\n");
+		return (0);
 	}
-	close(fd);
 	return (1);
 }

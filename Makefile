@@ -6,7 +6,7 @@
 #    By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:03:58 by lkiloul           #+#    #+#              #
-#    Updated: 2025/01/26 00:11:29 by lkiloul          ###   ########.fr        #
+#    Updated: 2025/02/05 21:02:13 by lkiloul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC_FILES = game_init.c \
             sprites.c \
             so_long.c \
             close.c \
-			draw.c
+			draw.c \
+			map_valid.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
