@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/05 21:29:26 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:30:21 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_map
 	int			collectibles;
 	int			exit;
 	char		**map;
-	char		**map_copy;
 	int			exit_x;
 	int			exit_y;
 }				t_map;
@@ -101,4 +100,5 @@ void			draw_line(t_game *vars, char *line, int j);
 int				map_read(t_game *vars, char **argv);
 int				map_copy(t_game *vars);
 int				path_checker(t_game *vars);
+void			map_checker(t_game *vars, int fd);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/05 21:48:01 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:41:54 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	check_file(char **argv)
 
 int	map_parsing(t_game *vars, char **argv)
 {
-	char	*line;
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
@@ -64,28 +63,7 @@ int	map_parsing(t_game *vars, char **argv)
 		perror("Error");
 		return (-1);
 	}
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		if (!is_char_valid(line))
-		{
-			free(line);
-			close(fd);
-			return (-1);
-		}
-		if (vars->map.width == 0)
-			vars->map.width = ft_strlen(line) - 1;
-		else if (vars->map.width != (int)ft_strlen(line) - 1)
-		{
-			free(line);
-			close(fd);
-			ft_printf("Error : The map is not rectangular.\n");
-			return (-1);
-		}
-		vars->map.height++;
-		free(line);
-		line = get_next_line(fd);
-	}
+	map_checker(vars, fd);
 	close(fd);
 	return (1);
 }
@@ -105,10 +83,37 @@ int	check_map(t_game *vars, char **argv)
 		return (0);
 	if (!map_copy(vars))
 		return (0);
-	if (path_checker(vars) != 1 )
+	if (path_checker(vars) != 1)
 	{
 		ft_printf("Error : the map does not have a valid path.\n");
 		return (0);
 	}
 	return (1);
+}
+void map_checker(t_game *vars, int fd)
+{
+	char *line;
+	
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		if (!is_char_valid(line))
+		{
+			free(line);
+			close(fd);
+			return;
+		}
+		if (vars->map.width == 0)
+			vars->map.width = ft_strlen(line) - 1;
+		else if (vars->map.width != (int)ft_strlen(line) - 1)
+		{
+			free(line);
+			close(fd);
+			ft_printf("Error : The map is not rectangular.\n");
+			return;
+		}
+		vars->map.height++;
+		free(line);
+		line = get_next_line(fd);
+	}
 }

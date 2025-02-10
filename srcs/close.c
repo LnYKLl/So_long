@@ -6,19 +6,26 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:46:08 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/03 10:18:29 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:45:55 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void free_map(t_game *vars)
+
+void	free_map(t_game *vars)
 {
-    if (vars->map.map)
-    {
-        while (vars->map.height)
-            free(vars->map.map[--vars->map.height]);
-        free(vars->map.map);
-    }
+	if (vars->map.map)
+	{
+		while (vars->map.height)
+			free(vars->map.map[--vars->map.height]);
+		free(vars->map.map);
+	}
+	if (vars->map_copy.map)
+	{
+		while (vars->map_copy.height)
+			free(vars->map_copy.map[--vars->map.height]);
+		free(vars->map_copy.map);
+	}
 }
 void	free_resources(t_game *vars)
 {
@@ -40,7 +47,7 @@ void	free_resources(t_game *vars)
 		mlx_destroy_display(vars->mlx);
 		free(vars->mlx);
 	}
-    free_map(vars);
+	free_map(vars);
 	free(vars);
 }
 int	close_window(t_game *vars)
