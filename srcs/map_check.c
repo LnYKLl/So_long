@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:04:46 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 23:52:47 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,22 @@ int	map_checker(t_game *vars, int fd)
 	char	*line;
 	int		line_length;
 
-	line = get_next_line(fd);
-	while (line != NULL)
+	while ((line = get_next_line(fd)) != NULL)
 	{
 		if (!is_char_valid(vars, line, vars->map.height))
-			return (free(line), close(fd), 0);
+			return (free(line), 0);
 		line_length = ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n');
 		if (vars->map.width == 0 && line[0] != '\n')
 			vars->map.width = line_length;
 		if (line[0] != '\n' && vars->map.width != line_length)
 		{
-			ft_printf("Error: The map is not rectangular.\n");
-			return (free(line), close(fd), 0);
+			free(line);
+			while ((line = get_next_line(fd)) != NULL)
+				free(line);
+			return (ft_printf("Error: The map is not rectangular.\n"), 0);
 		}
 		vars->map.height += (line[0] != '\n');
 		free(line);
-		line = get_next_line(fd);
 	}
 	return (1);
 }

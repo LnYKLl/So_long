@@ -6,7 +6,7 @@
 #    By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:03:58 by lkiloul           #+#    #+#              #
-#    Updated: 2025/02/18 22:35:16 by lkiloul          ###   ########.fr        #
+#    Updated: 2025/02/19 23:34:41 by lkiloul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,19 +41,24 @@ LIBS = -L$(LIBFT_DIR) -lft -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 all: $(LIBFT) $(NAME)
 
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+
 $(NAME): $(OBJ)
-	$(CC)  $(OBJ) $(LIBS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
+	@make -C $(LIBFT_DIR) clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
+	@make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(LIBFT)
