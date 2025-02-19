@@ -6,10 +6,11 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:47:51 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/01/25 23:52:47 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 06:06:13 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "so_long.h"
 
 void	move_player(t_game *vars, int keycode)
@@ -41,27 +42,31 @@ void	move_player(t_game *vars, int keycode)
 	draw_player(vars, vars->player.x, vars->player.y);
 }
 
-
 void	check_place(t_game *vars, int x, int y, int keycode)
 {
 	if (vars->map.map[y][x] != '1')
+	{
 		move_player(vars, keycode);
-    if (vars->map.map[vars->player.y][vars->player.x] == 'C')
-    {
-        vars->map.collectibles--;
-        vars->map.map[vars->player.y][vars->player.x] = '0';
+		ft_printf("Move count : %d\n Collectibles left : %d\n",
+			vars->player.moves, vars->map.collectibles);
+		display_moves(vars);
+	}
+	if (vars->map.map[vars->player.y][vars->player.x] == 'C')
+	{
+		vars->map.collectibles--;
+		vars->map.map[vars->player.y][vars->player.x] = '0';
 		if (vars->map.collectibles == 0)
 		{
 			draw_exit(vars, vars->map.exit_x, vars->map.exit_y);
 		}
-    }
-    if (vars->map.map[vars->player.y][vars->player.x] == 'E')
-    {
-        if (vars->map.collectibles == 0)
-        {
-            close_window(vars);
-        }
-    }
+	}
+	if (vars->map.map[vars->player.y][vars->player.x] == 'E')
+	{
+		if (vars->map.collectibles == 0)
+		{
+			close_window(vars);
+		}
+	}
 }
 
 void	moves(int keycode, t_game *vars)

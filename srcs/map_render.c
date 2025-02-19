@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:03:05 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/05 21:06:48 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 06:02:27 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void	draw_map(t_game *vars, char **argv)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		draw_line(vars, line, j);
-		j++;
+		if (line[0] != '\n')
+		{
+			draw_line(vars, line, j);
+			j++;
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -87,4 +90,21 @@ int	render_map(t_game *vars, char **argv)
 	free(line);
 	close(fd);
 	return (1);
+}
+
+void	display_moves(t_game *vars)
+{
+	char	*moves_text;
+	char	*collectibles_text;
+
+	moves_text = ft_itoa(vars->player.moves);
+	collectibles_text = ft_itoa(vars->map.collectibles);
+	if (!moves_text)
+		return ;
+	draw_wall(vars, 1, 0);
+	mlx_string_put(vars->mlx, vars->win, 96, 32, 0xFFFFFF, moves_text);
+	mlx_string_put(vars->mlx, vars->win, 10, 32, 0xFFFFFF, "Moves : ");
+	mlx_string_put(vars->mlx, vars->win, 10, 50, 0xFFFFFF, "Collectibles : ");
+	mlx_string_put(vars->mlx, vars->win, 96, 50, 0xFFFFFF, collectibles_text);
+	free(moves_text);
 }

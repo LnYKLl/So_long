@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/10 16:41:54 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 06:04:46 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 #include "so_long.h"
 #include <stdio.h>
 
-int	is_char_valid(char *line)
+int	is_char_valid(t_game *vars, char *line, int j)
 {
 	int	i;
 	int	p;
 
+	if (line[0] == '\n' && line[1] == '\0')
+		return (1);
+	if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
+		return (ft_printf("Error : The map is not surrounded by walls.\n"), 0);
 	i = 0;
 	p = 0;
-	if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
-	{
-		ft_printf("Error : The map is not surrounded by walls.\n");
-		return (0);
-	}
 	while (line[i])
 	{
-		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] != 'E'
-			&& line[i] != 'C' && line[i] != '\n')
+		if (!ft_strchr("10PEC\n", line[i]))
+			return (ft_printf("Error : Invalid character in the map.\n"), 0);
+		if (line[i] == 'P')
 		{
-			ft_printf("Error :Invalid character in the map.\n");
-			return (0);
+			if (p++)
+				return (perror("Error : More than one player in the map.\n"),
+					0);
+			vars->player.x = i;
+			vars->player.y = j;
 		}
-		if (line[i] == 'P' && p == 0)
-			p++;
-		else if (line[i] == 'P' && p == 1)
-			perror("Error : There is more than one player in the map file.\n");
 		i++;
 	}
 	return (1);
@@ -55,7 +54,7 @@ int	check_file(char **argv)
 
 int	map_parsing(t_game *vars, char **argv)
 {
-	int		fd;
+	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
@@ -63,7 +62,11 @@ int	map_parsing(t_game *vars, char **argv)
 		perror("Error");
 		return (-1);
 	}
-	map_checker(vars, fd);
+	if (!map_checker(vars, fd))
+	{
+		close(fd);
+		return (0);
+	}
 	close(fd);
 	return (1);
 }
@@ -83,37 +86,35 @@ int	check_map(t_game *vars, char **argv)
 		return (0);
 	if (!map_copy(vars))
 		return (0);
-	if (path_checker(vars) != 1)
+	if (path_alg(vars, vars->player.x, vars->player.y) != 1)
 	{
 		ft_printf("Error : the map does not have a valid path.\n");
 		return (0);
 	}
 	return (1);
 }
-void map_checker(t_game *vars, int fd)
+
+int	map_checker(t_game *vars, int fd)
 {
-	char *line;
-	
+	char	*line;
+	int		line_length;
+
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (!is_char_valid(line))
+		if (!is_char_valid(vars, line, vars->map.height))
+			return (free(line), close(fd), 0);
+		line_length = ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n');
+		if (vars->map.width == 0 && line[0] != '\n')
+			vars->map.width = line_length;
+		if (line[0] != '\n' && vars->map.width != line_length)
 		{
-			free(line);
-			close(fd);
-			return;
+			ft_printf("Error: The map is not rectangular.\n");
+			return (free(line), close(fd), 0);
 		}
-		if (vars->map.width == 0)
-			vars->map.width = ft_strlen(line) - 1;
-		else if (vars->map.width != (int)ft_strlen(line) - 1)
-		{
-			free(line);
-			close(fd);
-			ft_printf("Error : The map is not rectangular.\n");
-			return;
-		}
-		vars->map.height++;
+		vars->map.height += (line[0] != '\n');
 		free(line);
 		line = get_next_line(fd);
 	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:46:08 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/10 16:45:55 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 06:05:18 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void	free_map(t_game *vars)
 	if (vars->map_copy.map)
 	{
 		while (vars->map_copy.height)
-			free(vars->map_copy.map[--vars->map.height]);
+			free(vars->map_copy.map[--vars->map_copy.height]);
 		free(vars->map_copy.map);
 	}
 }
+
 void	free_resources(t_game *vars)
 {
 	if (vars->sprite.background.xpm)
@@ -50,6 +51,7 @@ void	free_resources(t_game *vars)
 	free_map(vars);
 	free(vars);
 }
+
 int	close_window(t_game *vars)
 {
 	free_resources(vars);
