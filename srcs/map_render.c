@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:03:05 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:02:27 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 06:46:43 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	display_moves(t_game *vars)
 	mlx_string_put(vars->mlx, vars->win, 10, 50, 0xFFFFFF, "Collectibles : ");
 	mlx_string_put(vars->mlx, vars->win, 96, 50, 0xFFFFFF, collectibles_text);
 	free(moves_text);
+	free(collectibles_text);
 }

@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:47:51 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:06:13 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/19 07:03:02 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	check_place(t_game *vars, int x, int y, int keycode)
 	if (vars->map.map[y][x] != '1')
 	{
 		move_player(vars, keycode);
-		ft_printf("Move count : %d\n Collectibles left : %d\n",
-			vars->player.moves, vars->map.collectibles);
+		
 		display_moves(vars);
 	}
 	if (vars->map.map[vars->player.y][vars->player.x] == 'C')
