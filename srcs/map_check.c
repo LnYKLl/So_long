@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 03:39:32 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 04:59:28 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,24 @@
 int	is_char_valid(t_game *vars, char *line, int j)
 {
 	int	i;
-	int	p;
 
 	if (line[0] == '\n' && line[1] == '\0')
 		return (1);
 	if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
 		return (ft_printf("Error : The map is not surrounded by walls.\n"), 0);
 	i = 0;
-	p = 0;
 	while (line[i])
 	{
 		if (!ft_strchr("10PEC\n", line[i]))
 			return (ft_printf("Error : Invalid character in the map.\n"), 0);
 		if (line[i] == 'P')
 		{
-			if (p++)
-				return (perror("Error : More than one player in the map.\n"),
+			if (vars->player.players == 1)
+				return (ft_printf("Error : More than one player in the map.\n"),
 					0);
 			vars->player.x = i;
 			vars->player.y = j;
+			vars->player.players++;
 		}
 		i++;
 	}
@@ -46,7 +45,7 @@ int	check_file(char **argv)
 {
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
 	{
-		perror("Error : The file is not a .ber file.\n");
+		ft_printf("Error : The file is not a .ber file.\n");
 		return (0);
 	}
 	return (1);

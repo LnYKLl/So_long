@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 03:43:09 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 05:20:47 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_player
 	int			old_x;
 	int			old_y;
 	int			moves;
+	int			players;
 }				t_player;
 
 typedef struct s_game
@@ -105,4 +106,5 @@ int				map_read(t_game *vars, char **argv);
 int				map_copy(t_game *vars);
 int				path_alg(t_game *vars, int x, int y);
 int				map_checker(t_game *vars, int fd, char *line, int line_length);
+
 #endif

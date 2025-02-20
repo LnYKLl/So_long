@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:50:42 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 03:41:10 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 05:20:05 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	vars_init(t_game *vars)
 	vars->map.collectibles = 0;
 	vars->player.x = -1;
 	vars->player.y = -1;
+	vars->player.players = 0;
 	vars->map.exit_x = -1;
 	vars->map.exit_y = -1;
 	vars->map.map = NULL;
+	
 }
