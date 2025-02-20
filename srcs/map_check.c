@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 01:40:28 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 03:39:32 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,12 @@ int	check_file(char **argv)
 
 int	map_parsing(t_game *vars, char **argv)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 	int		line_length;
-	
+
 	line = NULL;
 	line_length = 0;
-	
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
