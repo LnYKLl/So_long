@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 05:32:04 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 01:39:54 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void			draw_line(t_game *vars, char *line, int j);
 int				map_read(t_game *vars, char **argv);
 int				map_copy(t_game *vars);
 int				path_alg(t_game *vars, int x, int y);
-int				map_checker(t_game *vars, int fd);
+int				map_checker(t_game *vars, int fd, char *line, int line_length);
 void			display_moves(t_game *vars);
 #endif

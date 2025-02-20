@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:50:42 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 07:13:15 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 01:34:19 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ int game_loop(char **argv)
     t_game	*vars = malloc(sizeof(t_game));
     if (!vars)
         return (1);
+    vars->map.height = 0;
+    vars->map.width = 0;
+    vars->map.collectibles = 0;
+    vars->player.x = -1;
+    vars->player.y = -1;
+    vars->map.exit_x = -1;
+    vars->map.exit_y = -1;
+    vars->map.map = NULL;
     if(check_map(vars, argv) != 1) 
     {
         free(vars);

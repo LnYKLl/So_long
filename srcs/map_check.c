@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 23:52:47 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 01:40:28 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,19 @@ int	check_file(char **argv)
 int	map_parsing(t_game *vars, char **argv)
 {
 	int	fd;
-
+	char	*line;
+	int		line_length;
+	
+	line = NULL;
+	line_length = 0;
+	
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error");
 		return (-1);
 	}
-	if (!map_checker(vars, fd))
+	if (!map_checker(vars, fd, line, line_length))
 	{
 		close(fd);
 		return (0);
@@ -94,12 +99,10 @@ int	check_map(t_game *vars, char **argv)
 	return (1);
 }
 
-int	map_checker(t_game *vars, int fd)
+int	map_checker(t_game *vars, int fd, char *line, int line_length)
 {
-	char	*line;
-	int		line_length;
-
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (!is_char_valid(vars, line, vars->map.height))
 			return (free(line), 0);
@@ -109,12 +112,17 @@ int	map_checker(t_game *vars, int fd)
 		if (line[0] != '\n' && vars->map.width != line_length)
 		{
 			free(line);
-			while ((line = get_next_line(fd)) != NULL)
+			line = get_next_line(fd);
+			while (line != NULL)
+			{
 				free(line);
+				line = get_next_line(fd);
+			}
 			return (ft_printf("Error: The map is not rectangular.\n"), 0);
 		}
 		vars->map.height += (line[0] != '\n');
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (1);
 }
