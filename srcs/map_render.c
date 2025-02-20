@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:03:05 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:46:43 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 01:48:35 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	draw_map(t_game *vars, char **argv)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	display_moves(vars);
 }
 
 void	draw_line(t_game *vars, char *line, int j)

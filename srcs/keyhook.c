@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:47:51 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 01:35:07 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/20 01:47:35 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	check_place(t_game *vars, int x, int y, int keycode)
 	if (vars->map.map[y][x] != '1')
 	{
 		move_player(vars, keycode);
-		ft_printf("Moves: %d\n", vars->player.moves);
-		display_moves(vars);
 	}
 	if (vars->map.map[vars->player.y][vars->player.x] == 'C')
 	{
@@ -66,6 +64,8 @@ void	check_place(t_game *vars, int x, int y, int keycode)
 			close_window(vars);
 		}
 	}
+	ft_printf("Moves: %d\n", vars->player.moves);
+	display_moves(vars);
 }
 
 void	moves(int keycode, t_game *vars)
