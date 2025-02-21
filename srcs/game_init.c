@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:50:42 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 05:20:05 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/21 04:21:27 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	vars_init(t_game *vars)
 	vars->map.exit_x = -1;
 	vars->map.exit_y = -1;
 	vars->map.map = NULL;
-	
+	vars->map_copy.exit = 0;
 }

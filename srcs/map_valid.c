@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:45:22 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:05:10 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/21 04:01:58 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	map_copy(t_game *vars)
 	vars->map_copy.width = vars->map.width;
 	vars->map_copy.height = vars->map.height;
 	vars->map_copy.collectibles = vars->map.collectibles;
-	vars->map_copy.exit = vars->map.exit;
 	vars->map_copy.exit_x = vars->map.exit_x;
 	vars->map_copy.exit_y = vars->map.exit_y;
 	return (1);

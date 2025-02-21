@@ -6,12 +6,11 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 23:54:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 05:18:12 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/21 04:21:36 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 void	init_sprites(t_game *vars)
 {
@@ -28,4 +27,3 @@ void	init_sprites(t_game *vars)
 	vars->sprite.exit.xpm = mlx_xpm_file_to_image(vars->mlx, "assets/exit.xpm",
 			&vars->sprite.exit.x, &vars->sprite.exit.y);
 }
-

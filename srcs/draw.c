@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 23:04:49 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:05:48 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/21 03:17:35 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	draw_coins(t_game *vars, int x, int y)
 {
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->sprite.coins.xpm, x
 		* 64, y * 64);
-	vars->map.collectibles++;
 }
 
 void	draw_exit(t_game *vars, int x, int y)
