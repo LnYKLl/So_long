@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 23:54:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/24 20:33:36 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:35:47 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	init_sprites(t_game *vars)
 	return (1);
 }
 
-void vars_sprites(t_game *vars)
+void	vars_sprites(t_game *vars)
 {
-	vars->sprite.background.xpm = (void *)NULL;
-	vars->sprite.coins.xpm = (void *)NULL;
-	vars->sprite.wall.xpm = (void *)NULL;
-	vars->sprite.exit.xpm = (void *)NULL;
-	vars->sprite.player.xpm = (void *)NULL;
-	vars->win = (void *)NULL;
+	vars->sprite.background.xpm = (void *) NULL;
+	vars->sprite.coins.xpm = (void *) NULL;
+	vars->sprite.wall.xpm = (void *) NULL;
+	vars->sprite.exit.xpm = (void *) NULL;
+	vars->sprite.player.xpm = (void *) NULL;
+	vars->win = (void *) NULL;
 }
