@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:50:42 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/21 04:21:27 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:10:50 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ int	game_loop(char **argv)
 		return (0);
 	}
 	vars->mlx = mlx_init();
+	if (init_sprites(vars) == 0)
+		{
+			close_window(vars);
+			return (ft_printf("A sprite cannot be loaded"), 0);
+		}
 	vars->win = mlx_new_window(vars->mlx, vars->map.width * 64, vars->map.height
 			* 64, "So_Long");
-	init_sprites(vars);
 	vars->player.moves = 0;
 	draw_map(vars, argv);
 	mlx_key_hook(vars->win, key_hook, vars);
