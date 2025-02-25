@@ -6,11 +6,10 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:47:51 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 04:42:14 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:18:11 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "so_long.h"
 
 void	move_player(t_game *vars, int keycode)

@@ -6,7 +6,7 @@
 #    By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:03:58 by lkiloul           #+#    #+#              #
-#    Updated: 2025/02/19 23:34:41 by lkiloul          ###   ########.fr        #
+#    Updated: 2025/02/25 19:17:11 by lkiloul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,11 @@ INCLUDES = -I$(INC_DIR) -Imlx -I$(LIBFT_INC_DIR)
 
 LIBS = -L$(LIBFT_DIR) -lft -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
-all: $(LIBFT) $(NAME)
+all: $(LIBS) $(NAME)
 
-$(LIBFT):
+$(LIBS):
 	@make -C $(LIBFT_DIR)
+	@make -C  mlx/
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIBS) -o $(NAME)
@@ -53,10 +54,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@make -C $(LIBFT_DIR) clean
+	@make -C mlx/ clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
+	@make -C mlx/ clean
 	rm -f $(NAME)
 
 re: fclean all

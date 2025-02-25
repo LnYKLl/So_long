@@ -6,11 +6,10 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:45:22 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/25 04:49:16 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:18:26 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "so_long.h"
 
 int	map_read(t_game *vars, char **argv)

@@ -6,12 +6,11 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:34:17 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/19 06:05:58 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:18:30 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 int	main(int agrc, char **argv)
 {

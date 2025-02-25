@@ -6,28 +6,20 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/25 04:48:08 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:17:55 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "libft.h"
+# include <libft.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-# if BUFFER_SIZE > 1024
-#  undef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
 
 # define KEY_ESC 65307
 # define KEY_W 119

@@ -6,13 +6,11 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/25 05:01:56 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:18:18 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "so_long.h"
-#include <stdio.h>
 
 int	is_char_valid(t_game *vars, char *line, int j, int i)
 {

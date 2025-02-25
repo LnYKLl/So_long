@@ -6,11 +6,10 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:03:05 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/20 03:39:26 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:18:25 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "so_long.h"
 
 void	draw_map(t_game *vars, char **argv)
