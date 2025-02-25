@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/25 04:25:36 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 05:01:56 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	is_char_valid(t_game *vars, char *line, int j, int i)
 			vars->player.x = i;
 			vars->player.y = j;
 		}
+		if (line[i] == 'E' && vars->map.exit++)
+			return (ft_printf("Error : Too many exits.\n"), 0);
 		if (line[i] == 'E')
 		{
 			vars->map.exit_x = i;
@@ -98,10 +100,10 @@ int	check_map(t_game *vars, char **argv)
 	if (vars->map.collectibles <= 0 || vars->player.players != 1
 		|| vars->map.exit_x == -1 || vars->map.exit_y == -1)
 	{
-		ft_printf("Error : The map is missing something.0\n");
+		ft_printf("Error : The map is missing something.\n");
 		return (0);
 	}
-	if (path_alg(vars, vars->player.x, vars->player.y) != 1)
+	if (check_path(vars) != 1)
 	{
 		ft_printf("Error : the map does not have a valid path.\n");
 		return (0);

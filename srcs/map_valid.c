@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:45:22 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/21 04:01:58 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 04:49:16 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,27 @@ int	map_copy(t_game *vars)
 	return (1);
 }
 
-int	path_alg(t_game *vars, int x, int y)
+void	path_alg(t_game *vars, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= vars->map.width || y >= vars->map.height)
-		return (0);
+		return ;
 	if (vars->map_copy.map[y][x] == '1' || vars->map_copy.map[y][x] == '~')
-		return (0);
+		return ;
 	if (vars->map_copy.map[y][x] == 'E')
-		return (1);
+		vars->map_copy.exit = 1;
+	if (vars->map_copy.map[y][x] == 'C')
+		vars->map_copy.collectibles--;
 	vars->map_copy.map[y][x] = '~';
-	if (path_alg(vars, x + 1, y) || path_alg(vars, x - 1, y) || path_alg(vars,
-			x, y + 1) || path_alg(vars, x, y - 1))
-		return (1);
-	return (0);
+	path_alg(vars, x + 1, y);
+	path_alg(vars, x - 1, y);
+	path_alg(vars, x, y + 1);
+	path_alg(vars, x, y - 1);
+}
+
+int	check_path(t_game *vars)
+{
+	path_alg(vars, vars->player.x, vars->player.y);
+	if (vars->map_copy.exit == 0 || vars->map_copy.collectibles != 0)
+		return (0);
+	return (1);
 }

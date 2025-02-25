@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:16:26 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/24 20:32:00 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 04:48:08 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ int				map_parsing(t_game *vars, char **argv);
 void			draw_line(t_game *vars, char *line, int j);
 int				map_read(t_game *vars, char **argv);
 int				map_copy(t_game *vars);
-int				path_alg(t_game *vars, int x, int y);
+void			path_alg(t_game *vars, int x, int y);
+int				check_path(t_game *vars);
 int				map_checker(t_game *vars, int fd, char *line, int line_length);
 
 #endif
