@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 00:04:23 by lkiloul           #+#    #+#             */
-/*   Updated: 2025/02/21 04:20:10 by lkiloul          ###   ########.fr       */
+/*   Updated: 2025/02/25 04:25:36 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ int	map_parsing(t_game *vars, char **argv)
 	}
 	if (!map_checker(vars, fd, line, line_length))
 	{
+		close(fd);
+		return (0);
+	}
+	if (vars->map.height > 30 || vars->map.width > 60)
+	{
+		ft_printf("Error : The map is too big.\n");
 		close(fd);
 		return (0);
 	}
